@@ -217,12 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd55549f937e73c49b47af58c1f2b950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_bubble:
-  - {fileID: 1358769326249514, guid: 7971e34d3a70d0d4388375601c65dcfe, type: 2}
-  - {fileID: 1736802525962432, guid: 3bfba16f12bc8ac47b90cb20c784084d, type: 2}
-  - {fileID: 1335842105075984, guid: 7710ac2f2e631d14fbccfefd0d5104c3, type: 2}
-  - {fileID: 1966419046947860, guid: fa3f4ad173f32fc428b75c994bf192cb, type: 2}
-  - {fileID: 1575752971696628, guid: 25d2281c14cfb01478b5dc1d51735a02, type: 2}
+  m_bubble: {fileID: 1046599657102134, guid: ea49251fdb2d5cb4ab65d564ef3cdc87, type: 2}
   m_bubbleList: []
 --- !u!4 &1279300992
 Transform:
@@ -266,11 +261,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_bubble:
-  - {fileID: 1358769326249514, guid: 7971e34d3a70d0d4388375601c65dcfe, type: 2}
-  - {fileID: 1736802525962432, guid: 3bfba16f12bc8ac47b90cb20c784084d, type: 2}
-  - {fileID: 1335842105075984, guid: 7710ac2f2e631d14fbccfefd0d5104c3, type: 2}
-  - {fileID: 1966419046947860, guid: fa3f4ad173f32fc428b75c994bf192cb, type: 2}
-  - {fileID: 1575752971696628, guid: 25d2281c14cfb01478b5dc1d51735a02, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!212 &1670823406
 SpriteRenderer:
   m_ObjectHideFlags: 0
