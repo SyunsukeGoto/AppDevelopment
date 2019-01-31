@@ -6,36 +6,30 @@ using UnityEditor;
 public class LineUp : MonoBehaviour
 {
     [SerializeField]
-    private GameObject Ball;
-    
-    [SerializeField]    
+    private GameObject PointObject;
+
+    [SerializeField]
     private GameObject P0, P1, P2, P3;
 
     [SerializeField]
-    [Range(0,120)]
-    private int Interval;
+    [Range(0.0f, 5.0f)]
+    private float Interval;
 
-    [SerializeField]
-    private Move Player;
+    private List<GameObject> point;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-        // nullチェック
-        if (!Ball)
-        {
-            Debug.Log("LineUpにBallが登録されていないので停止しました");
-            //EditorApplication.isPlaying = false;
-        }
+        point = new List<GameObject>();
 
         // ボールを並べる
         BallLineUp();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
-	}
+    }
 
     private void BallLineUp()
     {
@@ -45,7 +39,7 @@ public class LineUp : MonoBehaviour
         end = P3.transform.position;
         r1 = P1.transform.position;
         r2 = P2.transform.position;
-        
+
         now = start;
         last = Vector3.zero;
 
@@ -61,10 +55,10 @@ public class LineUp : MonoBehaviour
 
             if ((now - last).magnitude >= Interval)
             {
-                if ((now - start).magnitude >= 1 && (now - end).magnitude >= 1)
+                if ((now - start).magnitude >= 1)
                 {
-                    GameObject b = Instantiate(Ball, now, Quaternion.identity);
-                    Player.AddPoint(b);
+                    GameObject b = Instantiate(PointObject, now, Quaternion.identity);
+                    point.Add(b);
                 }
 
                 last = now;
@@ -82,5 +76,10 @@ public class LineUp : MonoBehaviour
                3f * oneMinusT * oneMinusT * t * p1 +
                3f * oneMinusT * t * t * p2 +
                t * t * t * p3;
+    }
+
+    public List<GameObject> GetPointList()
+    {
+        return point;
     }
 }

@@ -5,53 +5,50 @@ using UnityEngine.AI;
 
 public class Move : MonoBehaviour
 {
+    [SerializeField]
+    [Range(0.0f,1.0f)]
+    private float Distance;
+
     private List<GameObject> Point;
+
+    [SerializeField]
+    private LineUp LineUp;
 
     private int nowPoint;
 
-    private bool state; 
+    private Vector3 startPos;
 
 	// Use this for initialization
 	void Start ()
     {
+        Point = new List<GameObject>();
+
         nowPoint = 0;
 
-        state = false;
+        LineUp = GameObject.Find("LineUp").GetComponent<LineUp>();
 
-        if (Point.Count != 0)
-        {
-            GetComponent<NavMeshAgent>().SetDestination(Point[nowPoint].transform.position);
-        }
-	}
+        Point = LineUp.GetPointList();
+
+        GetComponent<NavMeshAgent>().SetDestination(Point[nowPoint].transform.position);
+
+        startPos = transform.position;
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && Point.Count != 0 && !state)
+        if ((Point[nowPoint].transform.position - transform.position).magnitude <= Distance)
         {
-            GetComponent<NavMeshAgent>().SetDestination(Point[nowPoint].transform.position);
-            state = true;
-        }
+            nowPoint++;
 
-        if (state)
-        {
-            if ((Point[nowPoint].transform.position - transform.position).magnitude <= 1.0f)
+            if (nowPoint >= Point.Count)
             {
-                nowPoint++;
-
-                if (nowPoint >= Point.Count)
-                {
-                    nowPoint = 0;
-                    transform.position = Point[nowPoint].transform.position;
-                }
-
-                GetComponent<NavMeshAgent>().SetDestination(Point[nowPoint].transform.position);
+                nowPoint = 0;
+                transform.position = startPos;
+                GetComponent<NavMeshAgent>().velocity = Vector3.zero;
             }
+
+            GetComponent<NavMeshAgent>().SetDestination(Point[nowPoint].transform.position);
         }
 	}
-
-    public void AddPoint(GameObject obj)
-    {
-        Point.Add(obj);
-    }
 }
